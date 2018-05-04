@@ -22,8 +22,10 @@ class Usuario
     private $cod_tip;
 
 
-    public function __construct($Nome, $senha, $email, $num_matricula, $data_nasc, $turma, $RG, $foto_perf, $login, $id_usuario, $valido, $cod_tip)
+
+    public function __construct($Nome, $senha, $email, $num_matricula, $data_nasc, $turma, $RG, $foto_perf, $login, $valido, $id_usuario = null)
     {
+
         $this->Nome = $Nome;
         $this->senha = $senha;
         $this->email = $email;
@@ -35,7 +37,6 @@ class Usuario
         $this->login = $login;
         $this->id_usuario = $id_usuario;
         $this->valido = $valido;
-        $this->cod_tip = $cod_tip;
 
     }
 

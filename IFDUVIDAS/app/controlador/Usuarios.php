@@ -9,7 +9,7 @@ if (isset($_GET['acao'])){
     $acao = 'index';
 }
 
-switch ($acao){
+switch ($acao) {
 
     case 'index':
 
@@ -23,26 +23,26 @@ switch ($acao){
 
 
     case 'inserir';
-        if (!isset($_POST['gravar'])){ // se ainda nao tiver preenchido o form
+        if (!isset($_POST['gravar'])) { // se ainda nao tiver preenchido o form
 //                include '../views/usuarios/cabecalho.php';
             include '../visualizacao/Usuarios/telaCadastrar.html';
 //                include '../views/usuarios/rodape.php';
-        }else{
+        } else {
 
             // depois de preencher o formulario
 
             $nome = $_POST['Nome'];
-            $senha= $_POST['senha'];
-            $email= $_POST['email'];
-            $num_matricula= $_POST['num_matricula'];
-            $data_nasc= $_POST['data_nasc'];
-            $turma= $_POST['turma'];
-            $RG= $_POST['RG'];
-            $foto_perf= $_POST['foto_perf'];
-            $login= $_POST['login'];
-            $id_usuario= $_POST['id_usuario'];
-            $valido= $_POST['valido'];
-            $cod_tip= $_POST['cod_tip'];
+            $senha = $_POST['senha'];
+            $email = $_POST['email'];
+            $num_matricula = $_POST['num_matricula'];
+            $data_nasc = $_POST['data_nasc'];
+            $turma = $_POST['turma'];
+            $RG = $_POST['RG'];
+            $foto_perf = $_POST['foto_perf'];
+            $login = $_POST['login'];
+            $id_usuario = $_POST['id_usuario'];
+            $valido = $_POST['valido'];
+            $cod_tip = $_POST['cod_tip'];
 
             $novoUsuario = new Usuario($Nome, $senha, $email, $num_matricula, $data_nasc, $turma, $RG, $foto_perf, $login, $id_usuario, $valido, $cod_tip);
 
@@ -55,20 +55,20 @@ switch ($acao){
 
 
     case 'login':
-        if(!isset($_POST['entrar'])){ //primeiro clique - exibir formulario
+        if (!isset($_POST['entrar'])) { //primeiro clique - exibir formulario
             include '../visualizacao/Usuarios/telaLogin.html';
-        }else{ //depois de clicar em entrar
+        } else { //depois de clicar em entrar
             $login = $_POST['login'];
             $senha = $_POST['senha'];
             $crud = new CrudUsuarios();
             $usuario = $crud->login($login, $senha);
             var_dump($usuario);
-            if ($usuario){ //se deu certo o login
+            if ($usuario) { //se deu certo o login
                 $_SESSION['id_usuario'] = $usuario->getIdUsuario();
                 $_SESSION['Nome'] = $usuario->getNome();
                 $_SESSION['login'] = $usuario->getLogin();
                 header('location: Usuarios.php');
-            }else{
+            } else {
 
                 header('location: Usuarios.php?erro=1');
             }
@@ -82,3 +82,4 @@ switch ($acao){
         session_destroy();
         header('location: Usuarios.php');
         break;
+}
